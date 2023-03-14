@@ -1,25 +1,30 @@
-# sprawozdanie nr. 0: (-4, -1011) (-2, -73) (0, 1) (2, -21) (4, -523)
-
-# except L: 0.375, 0.75, -0.125
 def Lagrange(values, pos, n):
-    idx = len(values)+1
+    idx = len(pos)
     result = 0
 
-    for i in range(1, idx):
+    for i in range(idx):
         L = 1
-        for j in range(1, idx):
-            if i != j:
-                L *= (n-j)/(i-j)
+        for j in range(idx):
+            if j != i:
+                L *= (n - pos[j]) / (pos[i] - pos[j])
 
-        print(f'L: {L}')
-        result += values[i-1]*L
+        result += L * values[i]
 
-    print('Result:', result)
+    print(result)
 
 
 if __name__ == '__main__':
-    values = [7, 9, 18]
-    pos = [1, 2, 3]
-    n = 1.5
+    # values = [7, 9, 18]
+    # pos = [1, 2, 3]
+    # n = 1.5
+
+    # values = [975, 433, 7, -1, 235]
+    # pos = [-5, -4, -1, 3, 5]
+    # n = 2
+
+    # Sprawozdanie result: -0.6484375
+    values = [-1011, -73, 1, -21, -532]
+    pos = [-4, -2, 0, 2, 4]
+    n = 1
 
     Lagrange(values, pos, n)
