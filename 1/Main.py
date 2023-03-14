@@ -21,10 +21,12 @@ def gauss(matrix, vector):
     return x
 
 
-m1 = [[-1, 2, 1],
+if __name__ == '__main__':
+
+    m1 = [[-1, 2, 1],
       [1, -3, -2],
       [3, -1, -1]]
 
-v1 = [-1, -1, 4]
+    v1 = [-1, -1, 4]
 
-print(gauss(m1, v1))
+    print(gauss(m1, v1))
