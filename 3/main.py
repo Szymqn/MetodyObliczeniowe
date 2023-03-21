@@ -22,8 +22,8 @@ if __name__ == '__main__':
     # pos = [-5, -4, -1, 3, 5]
     # n = 2
 
-    # Sprawozdanie result: -0.6484375
-    values = [-1011, -73, 1, -21, -532]
+    # Sprawozdanie result: -1
+    values = [-1011, -73, 1, -21, -523]
     pos = [-4, -2, 0, 2, 4]
     n = 1
 
