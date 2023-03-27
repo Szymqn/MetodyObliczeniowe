@@ -3,11 +3,11 @@ def gauss(matrix, vector):
 
     for i in range(n):
         max_row = i
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             if matrix[j][i] > matrix[max_row][i]:
                 max_row = j
 
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             factor = matrix[j][i] / matrix[i][i]
             vector[j] -= factor * vector[i]
 
@@ -15,17 +15,16 @@ def gauss(matrix, vector):
                 matrix[j][k] -= factor * matrix[i][k]
 
     x = [0] * n
-    for i in range(n-1, -1, -1):
-        x[i] = round((vector[i] - sum(matrix[i][j] * x[j] for j in range(i+1, n))) / matrix[i][i])
+    for i in range(n - 1, -1, -1):
+        x[i] = round((vector[i] - sum(matrix[i][j] * x[j] for j in range(i + 1, n))) / matrix[i][i])
 
     return x
 
 
 if __name__ == '__main__':
-
     m1 = [[-1, 2, 1],
-      [1, -3, -2],
-      [3, -1, -1]]
+          [1, -3, -2],
+          [3, -1, -1]]
 
     v1 = [-1, -1, 4]
 
