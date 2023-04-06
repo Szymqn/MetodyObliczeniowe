@@ -1,6 +1,4 @@
-import math
-
-import numpy as np
+from math import pow
 from funcs import gauss
 
 
@@ -25,17 +23,16 @@ def newton_interpolation(xi, fi):
                 if j < n:
                     F[i][j] = xi[i] ** j
                 elif i > 1:
-                    F[i][j] = math.pow(xi[i] - xi[i-c], 3)
+                    F[i][j] = pow(xi[i] - xi[i-c], 3)
                     c -= 1
             else:
                 if 0 < j < n:
-                    F[-2][j] = math.pow(j, first_node)
-                    F[-1][j] = math.pow(last_node, j-1) * j
+                    F[-2][j] = pow(j, first_node)
+                    F[-1][j] = pow(last_node, j-1) * j
                 elif j >= n:
-                    F[-1][j] = 3 * math.pow((last_node - xi[j-3]), 2)
-                    print(j)
+                    F[-1][j] = 3 * pow((last_node - xi[j-3]), 2)
 
-    print(np.asmatrix(F))
+    return gauss(F, fi)
 
 
 if __name__ == '__main__':

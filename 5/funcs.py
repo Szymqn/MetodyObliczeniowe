@@ -16,6 +16,6 @@ def gauss(matrix, vector):
 
     x = [0] * n
     for i in range(n - 1, -1, -1):
-        x[i] = round((vector[i] - sum(matrix[i][j] * x[j] for j in range(i + 1, n))) / matrix[i][i])
+        x[i] = round((vector[i] - sum(matrix[i][j] * x[j] for j in range(i + 1, n))) / matrix[i][i], 3)
 
     return x
