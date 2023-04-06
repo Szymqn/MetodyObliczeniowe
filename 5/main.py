@@ -2,7 +2,8 @@ from math import pow
 from funcs import gauss
 
 
-def newton_interpolation(xi, fi):
+def newton_interpolation(xi, fi, x):
+    result = 0
     n = len(xi)
 
     # empty 2d matrix
@@ -11,7 +12,6 @@ def newton_interpolation(xi, fi):
 
     # modify fi
     fi.extend([1, 1])
-    print(fi)
 
     first_node = xi[0]
     last_node = xi[-1]
@@ -32,12 +32,21 @@ def newton_interpolation(xi, fi):
                 elif j >= n:
                     F[-1][j] = 3 * pow((last_node - xi[j-3]), 2)
 
-    return gauss(F, fi)
+    results = gauss(F, fi)
+
+    for i in range(len(results)):
+        if i < 4:
+            result += results[i] * pow(x, i)
+        else:
+            result += results[i] * pow((x - xi[i-n+1]), 3)
+
+    return round(result, 2)
 
 
 if __name__ == '__main__':
 
     xi = [1, 3, 5, 7]
     fi = [1, 8, 9, 17]
+    x = 6
 
-    print("Wartość interpolowana wynosi:", newton_interpolation(xi, fi))
+    print("Wartość interpolowana wynosi:", newton_interpolation(xi, fi, x))
