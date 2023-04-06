@@ -44,6 +44,10 @@ def newton_interpolation(xi, fi, x):
 
 
 if __name__ == '__main__':
+    # Sprawozdanie result: -1.98
+    # xi = [-1011, -73, 1, -21, -523]
+    # fi = [-4, -2, 0, 2, 4]
+    # x = 1
 
     xi = [1, 3, 5, 7]
     fi = [1, 8, 9, 17]
