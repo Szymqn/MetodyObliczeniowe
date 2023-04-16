@@ -2,7 +2,7 @@ from math import pow
 from funcs import gauss
 
 
-def newton_interpolation(xi, fi, x):
+def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
     result = 0
     n = len(xi)
 
@@ -11,7 +11,7 @@ def newton_interpolation(xi, fi, x):
          for _ in range(n+2)]
 
     # modify fi
-    fi.extend([1, 1])
+    fi.extend([l_derivative, r_derivative])
 
     first_node = xi[0]
     last_node = xi[-1]
@@ -48,9 +48,13 @@ if __name__ == '__main__':
     # xi = [-1011, -73, 1, -21, -523]
     # fi = [-4, -2, 0, 2, 4]
     # x = 1
+    # l_derivative = -.957
+    # r_derivative = -.579
 
     xi = [1, 3, 5, 7]
     fi = [1, 8, 9, 17]
     x = 6
+    l_derivative = 1
+    r_derivative = 1
 
-    print("Wartość interpolowana wynosi:", newton_interpolation(xi, fi, x))
+    print("Wartość interpolowana wynosi:", newton_interpolation(xi, fi, x, l_derivative, r_derivative))
