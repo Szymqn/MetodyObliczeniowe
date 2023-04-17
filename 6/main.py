@@ -1,48 +1,40 @@
+import math
 import numpy as np
 
 
-def newton_progressive(x, f, n):
-    result = f[0]
-    m = len(x)
+def newton_progressive(xi, fi, x):
+    result = fi[0]
+    idx = len(xi)
 
-    # empty 2d matrix
-    F = [[0 for _ in range(m-1)]
-         for _ in range(m-1)]
+    F = [[0 for _ in range(idx-1)]
+         for _ in range(idx-1)]
 
-    print('x:', x)
-    print('f(x):', f)
-
-    temp_p = int(len(x) / 2)
-    pos = temp_p * -1
-    c = pos
     temp_x = []
     for i in range(len(F)):
         for j in range(len(F)):
             if i + j < len(F):
                 if i == 0:
-                    F[i][j] = f[j+1] - f[j]
+                    F[i][j] = fi[j+1] - fi[j]
                     temp_x.append(F[i][j])
                 else:
-                    F[i][j] = temp_x[i+j+c] - temp_x[i+j+c-1]
-                    temp_x.append(F[i][j])
-        c += temp_p
+                    if j < len(F[i-1]) - 1:
+                        F[i][j] = F[i-1][j+1] - F[i-1][j]
+                        temp_x.append(F[i][j])
+
+    print(np.asarray(F).T)
 
     for j in range(len(F)):
-        temp = ((F[j][0])/(np.math.factorial(j+1) * np.math.pow(np.math.fabs(x[1]-x[0]), j)))
+        temp = ((F[j][0]) / (math.factorial(j+1) * math.pow(math.fabs(xi[1] - xi[0]), j+1)))
         for i in range(1, j+2):
-            temp *= (n - i)
+            temp *= (x - xi[i-1])
         result += temp
 
     return result
 
 
 if __name__ == '__main__':
-    # x = [-4, -2, 0, 2, 4]
-    # f = [-1011, -73, 1, -21, -523]
-    # n = 1
+    xi = [-4, -2, 0, 2, 4]
+    fi = [-1011, -73, 1, -21, -523]
+    x = 1
 
-    x = [1, 2, 3, 4]
-    f = [3, 7, 8, 15]
-    n = 2.5
-
-    print("Wartość interpolowana wynosi:", newton_progressive(x, f, n))
+    print(f"Wynik dla x = {x}:", newton_progressive(xi, fi, x))
