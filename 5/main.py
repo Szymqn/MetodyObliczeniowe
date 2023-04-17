@@ -50,4 +50,4 @@ if __name__ == '__main__':
     r_derivative = -579
     x = 1
 
-    print("Wartość interpolowana wynosi:", newton_interpolation(xi, fi, x, l_derivative, r_derivative))
+    print(f"Wynik dla x = {x}:", newton_interpolation(xi, fi, x, l_derivative, r_derivative))
