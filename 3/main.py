@@ -1,30 +1,21 @@
-def Lagrange(values, pos, n):
-    idx = len(pos)
+def Lagrange(xi, fi, x):
+    idx = len(fi)
     result = 0
 
     for i in range(idx):
-        L = 1
+        temp = 1
         for j in range(idx):
             if j != i:
-                L *= (n - pos[j]) / (pos[i] - pos[j])
+                temp *= (x - xi[j]) / (xi[i] - xi[j])
 
-        result += L * values[i]
+        result += temp * fi[i]
 
-    print(result)
+    return result
 
 
 if __name__ == '__main__':
-    # values = [7, 9, 18]
-    # pos = [1, 2, 3]
-    # n = 1.5
+    xi = [-4, -2, 0, 2, 4]
+    fi = [-1011, -73, 1, -21, -523]
+    x = 1
 
-    # values = [975, 433, 7, -1, 235]
-    # pos = [-5, -4, -1, 3, 5]
-    # n = 2
-
-    # Sprawozdanie result: -1
-    values = [-1011, -73, 1, -21, -523]
-    pos = [-4, -2, 0, 2, 4]
-    n = 1
-
-    Lagrange(values, pos, n)
+    print(f"Wynik dla x = {x}:", Lagrange(xi, fi, x))
