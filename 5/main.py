@@ -44,8 +44,8 @@ def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
 
 
 if __name__ == '__main__':
-    xi = [-1011, -73, 1, -21, -523]
-    fi = [-4, -2, 0, 2, 4]
+    xi = [-4, -2, 0, 2, 4]
+    fi = [-1011, -73, 1, -21, -523]
     l_derivative = 957
     r_derivative = -579
     x = 1
