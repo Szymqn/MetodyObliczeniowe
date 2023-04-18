@@ -1,5 +1,4 @@
 import math
-import numpy as np
 
 
 def newton_progressive(xi, fi, x):
