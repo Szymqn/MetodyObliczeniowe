@@ -40,12 +40,11 @@ def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
     results = gauss(F, fi)
     print(results)
 
-    for i in range(len(results)):
-        if i < len(xi):
+    for i in range(len(results)-1):
+        if i < 4:
             result += results[i] * pow(x, i)
         else:
-            result += results[i] * pow((x - xi[i-n+1]), 3)
-
+            result += results[i] * pow(x-xi[i-3], 3)
     return result
 
 
