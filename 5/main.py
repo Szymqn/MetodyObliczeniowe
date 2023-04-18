@@ -1,6 +1,5 @@
 from math import pow
 from funcs import gauss
-import numpy as np
 
 
 def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
@@ -34,11 +33,7 @@ def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
         else:
             F[-1][i] = 3 * pow(last_el - xi[i-3], 2)
 
-    np.set_printoptions(suppress=True)
-    print(np.asmatrix(F))
-    print(fi)
     results = gauss(F, fi)
-    print(results)
 
     for i in range(len(results)-1):
         if i < 4:
