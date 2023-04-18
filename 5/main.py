@@ -1,38 +1,44 @@
 from math import pow
 from funcs import gauss
+import numpy as np
 
 
 def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
     result = 0
     n = len(xi)
 
-    # empty 2d matrix
     F = [[0 for _ in range(n+2)]
          for _ in range(n+2)]
 
-    # modify fi
     fi.extend([l_derivative, r_derivative])
 
-    first_node = xi[0]
-    last_node = xi[-1]
+    first_el = xi[0]
+    last_el = xi[-1]
 
     for i in range(len(F)):
-        c = i - 1
         for j in range(len(F)):
             if i < n:
-                if j < n:
+                if j < n-1:
                     F[i][j] = xi[i] ** j
-                elif i > 1:
-                    F[i][j] = pow(xi[i] - xi[i-c], 3)
-                    c -= 1
-            else:
-                if 0 < j < n:
-                    F[-2][j] = pow(j, first_node)
-                    F[-1][j] = pow(last_node, j-1) * j
-                elif j >= n:
-                    F[-1][j] = 3 * pow((last_node - xi[j-3]), 2)
+                if i > 1 and j >= n-1:
+                    F[i][j] = pow(xi[i] - xi[j-3], 3)
 
+    F[-1][1] = 1
+    F[-1][2] = 2 * last_el
+    F[-1][3] = 3 * pow(last_el, 2)
+
+    for i in range(1, len(F)):
+        if i < 4:
+            F[i][-1] = 0
+            F[-2][i] = i * pow(first_el, i-1)
+        else:
+            F[-1][i] = 3 * pow(last_el - xi[i-3], 2)
+
+    np.set_printoptions(suppress=True)
+    print(np.asmatrix(F))
+    print(fi)
     results = gauss(F, fi)
+    print(results)
 
     for i in range(len(results)):
         if i < len(xi):
@@ -40,7 +46,7 @@ def newton_interpolation(xi, fi, x, l_derivative, r_derivative):
         else:
             result += results[i] * pow((x - xi[i-n+1]), 3)
 
-    return round(result, 2)
+    return result
 
 
 if __name__ == '__main__':
