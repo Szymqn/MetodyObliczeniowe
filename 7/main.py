@@ -3,8 +3,8 @@ from math import sqrt
 
 
 def integral(x):
-    # return (sqrt(x ** 2 + .3))/(1.4 + sqrt(.8 * (x ** 2) + 1.6))
-    return x ** 2
+    # return x ** 2
+    return (sqrt(x ** 2 + .3))/(1.4 + sqrt(.8 * (x ** 2) + 1.6))
 
 
 def trapeze_method(integral, lower_limit, upper_limit, n):
@@ -44,13 +44,13 @@ def simpson_method(integral, lower_limit, upper_limit, n):
 
 
 if __name__ == '__main__':
-    lower_limit = 1
-    upper_limit = 4
-    n = 3
-
-    # lower_limit = 1.3
-    # upper_limit = 2.5
+    # lower_limit = 1
+    # upper_limit = 4
     # n = 3
+
+    lower_limit = 1.3
+    upper_limit = 2.5
+    n = 3
 
     print(f"Wynik dla n = {n}:", trapeze_method(integral, lower_limit, upper_limit, n))
     print(f"Wynik dla n = {n}:", simpson_method(integral, lower_limit, upper_limit, n))
