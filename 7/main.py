@@ -1,3 +1,4 @@
+import numpy as np
 from math import sqrt
 
 
@@ -9,12 +10,10 @@ def integral(x):
 def trapeze_method(integral, lower_limit, upper_limit, n):
     result = 0
     results = []
-    lower_limit *= 10
-    upper_limit *= 10
     h = round((upper_limit - lower_limit) / n, 1)
 
-    for i in range(int(lower_limit), int(upper_limit)+int(h), int(h)):
-        results.append(integral(i/10))
+    for i in np.arange(lower_limit, upper_limit+h, h):
+        results.append(integral(i))
 
     for i in range(len(results)):
         if i == 0 or i == len(results)-1:
@@ -22,7 +21,26 @@ def trapeze_method(integral, lower_limit, upper_limit, n):
         else:
             result += results[i]
 
-    return h * result / 10
+    return h * result
+
+
+def simpson_method(integral, lower_limit, upper_limit, n):
+    result = 0
+    results = []
+    h = (upper_limit - (upper_limit - lower_limit)) / 2
+
+    for i in np.arange(lower_limit, upper_limit+h, h):
+        results.append(integral(i))
+
+    result = results[0] + results[-1]
+
+    for i in range(1, len(results)-1):
+        if i % 2 == 0:
+            result += 2 * results[i]
+        else:
+            result += 4 * results[i]
+
+    return result * h / n
 
 
 if __name__ == '__main__':
@@ -35,3 +53,4 @@ if __name__ == '__main__':
     # n = 3
 
     print(f"Wynik dla n = {n}:", trapeze_method(integral, lower_limit, upper_limit, n))
+    print(f"Wynik dla n = {n}:", simpson_method(integral, lower_limit, upper_limit, n))
