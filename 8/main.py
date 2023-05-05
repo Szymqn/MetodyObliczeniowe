@@ -1,4 +1,5 @@
 import numpy as np
+from math import sqrt
 
 
 def gauss_quadrature(n):
@@ -7,7 +8,8 @@ def gauss_quadrature(n):
 
 
 def integral(x):
-    return (x - 1) / (x ** 2 + x)
+    # return (x - 1) / (x ** 2 + x)
+    return (sqrt(x ** 2 + .3))/(1.4 + sqrt(.8 * (x ** 2) + 1.6))
 
 
 def gauss_legendre(lower_limit, upper_limit, n):
@@ -19,15 +21,18 @@ def gauss_legendre(lower_limit, upper_limit, n):
     h = (upper_limit - lower_limit) / 2
 
     for i in range(n):
-        print(i)
         result += weight[i] * integral(h * abscissa[i] + (upper_limit + lower_limit)/2)
 
     return h * result
 
 
 if __name__ == '__main__':
-    lower_limit = 2
-    upper_limit = 3
-    n = 2
+    # lower_limit = 2
+    # upper_limit = 3
+    # n = 2
 
-    print(gauss_legendre(lower_limit, upper_limit, n))
+    lower_limit = 1.3
+    upper_limit = 2.5
+    n = 3
+
+    print(f"Wynik dla n = {n}:", gauss_legendre(lower_limit, upper_limit, n))
