@@ -33,6 +33,7 @@ if __name__ == '__main__':
 
     lower_limit = 1.3
     upper_limit = 2.5
-    n = 3
+    print("Podaj n: ", end='')
+    n = int(input())
 
     print(f"Wynik dla n = {n}:", gauss_legendre(lower_limit, upper_limit, n))
