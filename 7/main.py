@@ -25,7 +25,6 @@ def trapeze_method(integral, lower_limit, upper_limit, n):
 
 
 def simpson_method(integral, lower_limit, upper_limit, n):
-    result = 0
     results = []
     h = (upper_limit - (upper_limit - lower_limit)) / 2
 
@@ -40,7 +39,7 @@ def simpson_method(integral, lower_limit, upper_limit, n):
         else:
             result += 4 * results[i]
 
-    return result * h / n
+    return result * h / 3
 
 
 if __name__ == '__main__':
@@ -53,5 +52,5 @@ if __name__ == '__main__':
     print("Podaj n: ", end='')
     n = int(input())
 
-    print(f"Wynik dla n = {n}:", trapeze_method(integral, lower_limit, upper_limit, n))
-    print(f"Wynik dla n = {n}:", simpson_method(integral, lower_limit, upper_limit, n))
+    print(f"Wynik dla n = {n}, moteda trapezów:", trapeze_method(integral, lower_limit, upper_limit, n))
+    print(f"Wynik dla n = {n}, metoda simpsona:", simpson_method(integral, lower_limit, upper_limit, n))
