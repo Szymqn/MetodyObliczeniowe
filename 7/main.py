@@ -26,7 +26,7 @@ def trapeze_method(integral, lower_limit, upper_limit, n):
 
 def simpson_method(integral, lower_limit, upper_limit, n):
     results = []
-    h = (upper_limit - lower_limit) / 2
+    h = ((upper_limit - lower_limit) / n) / 2
 
     for i in np.arange(lower_limit, upper_limit+h, h):
         results.append(integral(i))
