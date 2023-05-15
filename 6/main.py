@@ -20,6 +20,8 @@ def newton_progressive(xi, fi, x):
                         F[i][j] = F[i-1][j+1] - F[i-1][j]
                         temp_x.append(F[i][j])
 
+    print(F)
+
     for j in range(len(F)):
         temp = ((F[j][0]) / (math.factorial(j+1) * math.pow(math.fabs(xi[1] - xi[0]), j+1)))
         for i in range(1, j+2):
