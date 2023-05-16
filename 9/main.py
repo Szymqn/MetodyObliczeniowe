@@ -3,6 +3,11 @@ from math import sqrt
 import numpy as np
 
 
+def expected_result(x):
+    return sqrt(x ** 3 + 3 * x ** 2 + 1)
+    # return sqrt(x)
+
+
 def sqaure_approximation(lower_limit, upper_limit, n, p_x, x):
     result = 0
 
@@ -19,7 +24,6 @@ def sqaure_approximation(lower_limit, upper_limit, n, p_x, x):
         F_res[i] = gauss_legendre(lower_limit, upper_limit, 20, p_x, i, None)
 
     results = gauss(F, F_res)
-    print(results)
 
     for i in range(len(results)):
         result += results[i] * x ** i
@@ -28,11 +32,12 @@ def sqaure_approximation(lower_limit, upper_limit, n, p_x, x):
 
 
 if __name__ == '__main__':
-    lower_limit = 1
-    upper_limit = 3
-    n = 2
+    n = 5
     p_x = 1
-    x = 2
 
-    print(f"Wynik dla n = {n}, aproksymacja średniokwadratowa:", sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
+    lower_limit = -1
+    upper_limit = 1
+    x = .25
 
+    print(f"Wynik dla n = {n}, w punckie x = {x}, aproksymacja średniokwadratowa wynosi:", sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
+    print(f"Wynik oczekiwany dla n = {n}, w punkcie x = {x}:", expected_result(x))

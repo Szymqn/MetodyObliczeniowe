@@ -8,7 +8,8 @@ def gauss_quadrature(n):
 
 
 def integral_r(x, p_x, idx):
-    return x ** idx * sqrt(x) * p_x
+    return x ** idx * sqrt(x ** 3 + 3 * x ** 2 + 1) * p_x
+    # return x ** idx * sqrt(x) * p_x
 
 
 def integral_m(x, p_x, idx_x, idx_y):
