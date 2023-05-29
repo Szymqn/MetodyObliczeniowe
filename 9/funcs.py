@@ -7,15 +7,6 @@ def gauss_quadrature(n):
     return x, w
 
 
-def integral_r(x, p_x, idx):
-    return x ** idx * sqrt(x ** 3 + 3 * x ** 2 + 1) * p_x
-    # return x ** idx * sqrt(x) * p_x
-
-
-def integral_m(x, p_x, idx_x, idx_y):
-    return x ** idx_x * x ** idx_y * p_x
-
-
 def gauss_legendre(lower_limit, upper_limit, n, p_x, j, k):
     result = 0
     quadrature = gauss_quadrature(n)
@@ -23,6 +14,9 @@ def gauss_legendre(lower_limit, upper_limit, n, p_x, j, k):
     weight = quadrature[:][1]
 
     h = (upper_limit - lower_limit) / 2
+
+    integral_r = lambda x, p_x, idx: x ** idx * sqrt(x ** 3 + 3 * x ** 2 + 1) * p_x
+    integral_m = lambda x, p_x, idx_x, idx_y: x ** idx_x * x ** idx_y * p_x
 
     for i in range(n):
         if k is None:

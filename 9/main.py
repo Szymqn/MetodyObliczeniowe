@@ -3,18 +3,13 @@ from math import sqrt
 import numpy as np
 
 
-def expected_result(x):
-    return sqrt(x ** 3 + 3 * x ** 2 + 1)
-    # return sqrt(x)
-
-
 def sqaure_approximation(lower_limit, upper_limit, n, p_x, x):
     result = 0
 
-    F = [[0 for _ in range(n+1)]
-         for _ in range(n+1)]
+    F = [[0 for _ in range(n + 1)]
+         for _ in range(n + 1)]
 
-    F_res = [0 for _ in range(n+1)]
+    F_res = [0 for _ in range(n + 1)]
 
     for i in range(len(F)):
         for j in range(len(F)):
@@ -32,6 +27,7 @@ def sqaure_approximation(lower_limit, upper_limit, n, p_x, x):
 
 
 if __name__ == '__main__':
+    expected_result = lambda x: sqrt(x ** 3 + 3 * x ** 2 + 1)
     n = 5
     p_x = 1
 
@@ -39,5 +35,6 @@ if __name__ == '__main__':
     upper_limit = 1
     x = .25
 
-    print(f"Wynik dla n = {n}, w punckie x = {x}, aproksymacja średniokwadratowa wynosi:", sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
+    print(f"Wynik dla n = {n}, w punckie x = {x}, aproksymacja średniokwadratowa wynosi:",
+          sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
     print(f"Wynik oczekiwany dla n = {n}, w punkcie x = {x}:", expected_result(x))
