@@ -21,11 +21,11 @@ def approx_legendre(f, n, a, b, x):
 
 
 if __name__ == '__main__':
-    f = lambda x: math.exp(x)
+    f = lambda x: math.sqrt(x ** 3 + 3 * x ** 2 + 1)
     n = 2
     a = -1
     b = 1
-    x = 1
+    x = .25
 
     print(f"Wynik dla n = {n} na przedziale [{a}, {b}], w punkcie x = {x}, aproksymacja wielomianów oktagonalnych wynosi:", approx_legendre(f, n, a, b, x))
     print(f"Wynik oczekiwany dla n = {n} na przedziale [{a}, {b}], w punkcie x = {x}, wynosi:", f(x))
