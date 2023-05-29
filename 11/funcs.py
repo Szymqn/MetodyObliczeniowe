@@ -1,31 +1,3 @@
-def smallest_square(x, y, n, m, point):
-    result = 0
-
-    F = [[0 for _ in range(m + 1)]
-         for _ in range(m + 1)]
-
-    F_res = [0 for _ in range(m + 1)]
-
-    for j in range(len(F)):
-        for k in range(len(F)):
-            for i in range(n):
-                F[j][k] += (x[i] ** (k + j))
-
-    for k in range(len(F_res)):
-        for i in range(n):
-            F_res[k] += (x[i] ** k) * y[i]
-
-    print(F)
-    print(F_res)
-
-    results = gauss(F, F_res)
-
-    for i in range(len(results)):
-        result += results[i] * (point ** i)
-
-    print(result)
-
-
 def gauss(matrix, vector):
     n = len(matrix)
 
