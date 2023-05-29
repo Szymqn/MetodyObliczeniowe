@@ -40,6 +40,5 @@ if __name__ == '__main__':
     m = 4
     point = .25
 
-    smallest_square(x, y, n, m, point)
     print(f"Wynik dla n = {n} i m = {m}, w punkcie x = {point}, aproksymacja najmniejszych kwadratów wynosi:", smallest_square(x, y, n, m, point))
     print(f"Wynik oczekiwany dla n = {n} i m = {m}, w punkcie x = {point}, wynosi:", square_root(point))
