@@ -35,6 +35,5 @@ if __name__ == '__main__':
     upper_limit = 1
     x = .25
 
-    print(f"Wynik dla n = {n}, w punckie x = {x}, aproksymacja średniokwadratowa wynosi:",
-          sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
+    print(f"Wynik dla n = {n}, w punckie x = {x}, aproksymacja średniokwadratowa wynosi:", sqaure_approximation(lower_limit, upper_limit, n, p_x, x))
     print(f"Wynik oczekiwany dla n = {n}, w punkcie x = {x}:", expected_result(x))

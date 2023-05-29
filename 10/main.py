@@ -27,6 +27,5 @@ if __name__ == '__main__':
     b = 1
     x = 1
 
-    g_x = approx_legendre(f, n, a, b, x)
-    print("interpolation: g({}) = {}".format(x, g_x))
-    print("expected: f({}) = {}".format(x, f(x)))
+    print(f"Wynik dla n = {n} na przedziale [{a}, {b}], w punkcie x = {x}, aproksymacja wielomianów oktagonalnych wynosi:", approx_legendre(f, n, a, b, x))
+    print(f"Wynik oczekiwany dla n = {n} na przedziale [{a}, {b}], w punkcie x = {x}, wynosi:", f(x))
