@@ -1,4 +1,5 @@
 from sys import exit
+from sympy import symbols, diff
 
 
 def bisection_method(f, epsilon, a, b):
@@ -20,9 +21,7 @@ def bisection_method(f, epsilon, a, b):
     return center, iteration
 
 
-def statistic_method(f, epsilon, a, b):
-    f_1 = lambda x: 2 * x + 1
-    f_2 = lambda x: 2
+def statistic_method(f, f_1, f_2, epsilon, a, b):
     iteration = 0
 
     if f_1(a) * f_1(b) < 0 and f_2(a) * f_2(b) < 0:
@@ -42,9 +41,7 @@ def statistic_method(f, epsilon, a, b):
         xn = xni
 
 
-def secant_method(f, epsilon, a, b):
-    f_1 = lambda x: 2 * x + 1
-    f_2 = lambda x: 2
+def secant_method(f, f_2, epsilon, a, b):
     iteration = 1
 
     if f(a) >= 0 and f_2(a) >= 0:
@@ -64,7 +61,15 @@ def secant_method(f, epsilon, a, b):
 
 
 if __name__ == '__main__':
-    f = lambda x: x ** 2 + x - 5
+    x = symbols('x')
+    f = lambda x_val: x_val ** 2 + x_val - 5
+
+    f_1 = diff(f(x), x)
+    f_2 = diff(f_1, x)
+
+    f_1_l = lambda x_val: f_1.evalf(subs={x: x_val})
+    f_2_l = lambda x_val: f_2.evalf(subs={x: x_val})
+
     epsilon = 0.01
     a = 1
     b = 2
@@ -73,10 +78,10 @@ if __name__ == '__main__':
         bisection_result = bisection_method(f, epsilon, a, b)
         print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą bisekcji wynosi: {bisection_result[0]}, po {bisection_result[1]} iteracjach")
 
-        statistic_result = statistic_method(f, epsilon, a, b)
+        statistic_result = statistic_method(f, f_1_l, f_2_l, epsilon, a, b)
         print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą stycznych wynosi: {statistic_result[0]}, po {statistic_result[1]} iteracjach")
 
-        secant_result = secant_method(f, epsilon, a, b)
+        secant_result = secant_method(f, f_2_l, epsilon, a, b)
         print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą siecznych wynosi: {secant_result[0]}, po {secant_result[1]} iteracjach")
     else:
         exit("Warunek konieczny f(a) * f(b) < 0, nie został spełniony")
