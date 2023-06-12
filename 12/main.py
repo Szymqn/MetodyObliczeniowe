@@ -75,13 +75,13 @@ if __name__ == '__main__':
     b = 2
 
     if f(a) * f(b) < 0:
-        bisection_result = bisection_method(f, epsilon, a, b)
-        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą bisekcji wynosi: {bisection_result[0]}, po {bisection_result[1]} iteracjach")
+        bisection_result, bisection_iteration = bisection_method(f, epsilon, a, b)
+        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą bisekcji wynosi: {bisection_result}, po {bisection_iteration} iteracjach")
 
-        statistic_result = statistic_method(f, f_1_l, f_2_l, epsilon, a, b)
-        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą stycznych wynosi: {statistic_result[0]}, po {statistic_result[1]} iteracjach")
+        statistic_result, statistic_iteration = statistic_method(f, f_1_l, f_2_l, epsilon, a, b)
+        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą stycznych wynosi: {statistic_result}, po {statistic_iteration} iteracjach")
 
-        secant_result = secant_method(f, f_2_l, epsilon, a, b)
-        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą siecznych wynosi: {secant_result[0]}, po {secant_result[1]} iteracjach")
+        secant_result, secant_iteration = secant_method(f, f_2_l, epsilon, a, b)
+        print(f"Wynik dla epsilon = {epsilon}, na przedziale [{a}, {b}], metodą siecznych wynosi: {secant_result}, po {secant_iteration} iteracjach")
     else:
         exit("Warunek konieczny f(a) * f(b) < 0, nie został spełniony")
