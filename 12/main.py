@@ -55,6 +55,7 @@ def secant_method(f, f_2, epsilon, a, b):
 
     while abs(f(xn)) > epsilon:
         iteration += 1
+        x0 = xn
         xn = xne(xn)
 
     return xn, iteration
@@ -62,7 +63,7 @@ def secant_method(f, f_2, epsilon, a, b):
 
 if __name__ == '__main__':
     x = symbols('x')
-    f = lambda x_val: x_val ** 2 + x_val - 5
+    f = lambda x_val: x_val ** 2 + 4.1 * x_val - 9
 
     f_1 = diff(f(x), x)
     f_2 = diff(f_1, x)
@@ -71,8 +72,8 @@ if __name__ == '__main__':
     f_2_l = lambda x_val: f_2.evalf(subs={x: x_val})
 
     epsilon = 0.01
-    a = 1
-    b = 2
+    a = -10
+    b = -3
 
     if f(a) * f(b) < 0:
         bisection_result, bisection_iteration = bisection_method(f, epsilon, a, b)
